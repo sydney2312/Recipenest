@@ -73,9 +73,11 @@ class User extends Authenticatable
 
     public function scopeList(Builder $query)
     {
-        return true;
+        $query->where('id', '>', 0)
+        ->withCount(['recipes as total_recipes'])
+        ->latest()
+        ;
     }
-
 
 
     // =============== FUNCTIONS ===============

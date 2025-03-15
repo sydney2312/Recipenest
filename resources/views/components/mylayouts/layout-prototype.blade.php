@@ -1,80 +1,444 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yoga Studio Template">
+    <meta name="keywords" content="Yoga, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Yummy | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{asset('template_default/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('template_default/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('template_default/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{asset('template_default/css/slicknav.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('template_default/css/style.css')}}">
 </head>
 
 <body>
-
-    {{-- Navbar starts --}}
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">RecipeNest</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('prototype.home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('prototype.chefs.index') }}">Chefs</a>
-                </li>
-                <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Pages
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('prototype.chefs.show') }}">Chef Profile</a>
-                        <a class="dropdown-item" href="{{ route('prototype.chefs.portfolio') }}">Chef Portfolio</a>
-                        <a class="dropdown-item" href="{{ route('prototype.recipes.index') }}">Recipe List</a>
-                        <a class="dropdown-item" href="{{ route('prototype.recipes.show') }}">Recipe Details</a>
-                    </div>
-                </li>
-                <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Dashboard
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('prototype.authors.home') }}">Dashboard</a>
-                        <a class="dropdown-item" href="{{ route('prototype.authors.recipes.index') }}">Recipes</a>
-                        <a class="dropdown-item" href="{{ route('prototype.authors.recipes.create') }}">Create
-                            Recipe</a>
-                        <a class="dropdown-item" href="{{ route('prototype.authors.profile.edit') }}">Update Profile</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('prototype.login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('prototype.register') }}">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <br>
-    {{-- Navbar ends --}}
-
-    {{-- Content starts --}}
-    <div class="container">
-        {{ $slot }}
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
     </div>
-    {{-- Content ends --}}
 
-    {{-- Footer starts --}}
+   <!-- Header Section Begin -->
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container">
+        <!-- Logo Section -->
+        <div class="logo">
+            <a href="./index.html">
+                <img src="{{ asset('template_default/img/Recipienestlogo.png') }}" alt="Recipienest Logo">
+            </a>
+        </div>
+        
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <nav class="main-menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Chefs</a>
+                        <ul class="sub-menu">
+                            <li><a href="about-me.html">About Me</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="recipe.html">Recipe</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="recipe.html">Recipes</a></li>
+                    <li><a href="categories.html">Best Of</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-right search-switch">
+                <i class="fa fa-search"></i>
+            </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+</header>
+<!-- Header Section End -->
 
-    {{-- Footer ends --}}
+<style>
+    /* Logo Section Styles */
+    .header-section .logo {
+        display: flex;
+        justify-content: center; /* Centers the logo horizontally */
+        align-items: center; /* Centers the logo vertically */
+        margin-bottom: 20px; /* Adds some space below the logo */
+    }
 
-    @include('pages.prototype.nav.nav')
+    .header-section .logo img {
+        max-height: 150px; /* Increased the height for a bigger logo */
+        width: auto; /* Maintains aspect ratio */
+        display: block; /* Removes any extra spacing below the logo */
+        transition: transform 0.3s ease; /* Smooth zoom effect */
+    }
+
+    .header-section .logo img:hover {
+        transform: scale(1.05); /* Slight zoom on hover */
+    }
+
+    /* Navigation Menu Styles */
+    .header-section .nav-menu {
+        display: flex;
+        justify-content: center; /* Centers the navigation items */
+        align-items: center;
+    }
+
+    .header-section .nav-menu nav ul {
+        display: flex;
+        gap: 20px; /* Spacing between menu items */
+    }
+
+    .header-section .nav-menu nav ul li a {
+        text-decoration: none;
+        font-size: 16px;
+        color: #333; /* Change this color to fit your design */
+        font-weight: bold;
+    }
+
+    .header-section .nav-menu nav ul li a:hover {
+        color: #f39c12; /* Color change on hover */
+    }
+</style>
+
+
+    <!-- Header End -->
+
+    <!-- Page Top Recipe Section Begin -->
+    <section class="page-top-recipe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="pt-recipe-item large-item">
+                    <div class="pt-recipe-img set-bg" data-setbg="{{ asset('template_default/img/pasta.jpg') }}"> <!-- EDIT FOR PICS?? -->
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <span>March 11, 2025</span>
+                            <h3>Creamy Shrimp Fettucinne Pasta</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 order-lg-1">
+                    <div class="pt-recipe-item">
+                        <div class="pt-recipe-img set-bg" data-setbg="{{ asset('template_default/img/sberry.jpg') }}">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <h4>Japanese Souffle Pancakes with Straberries</h4>
+                        </div>
+                    </div>
+                    <div class="pt-recipe-item">
+                        <div class="pt-recipe-img set-bg" data-setbg="{{ asset('template_default/img/puri.jpg') }}">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <h4>Pani Puri Recipe</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 order-lg-3">
+                    <div class="pt-recipe-item">
+                        <div class="pt-recipe-img set-bg" data-setbg="{{ asset('template_default/img/bugr.jpg') }}">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <h4> Loaded Beef Burger </h4>
+                        </div>
+                    </div>
+                    <div class="pt-recipe-item">
+                        <div class="pt-recipe-img set-bg" data-setbg="{{ asset('template_default/img/palie.jpg') }}">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <h4> Spanish Seafood Paella</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Top Recipe Section End -->
+
+    <!-- Top Recipe Section Begin -->
+    <section class="top-recipe spad">
+        <div class="section-title">
+            <h5>Top Recipes this Week</h5>
+        </div>
+        <div class="container po-relative">
+            <div class="plus-icon">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="top-recipe-item large-item">
+                        <div class="top-recipe-img set-bg" data-setbg="img/top-recipe/recipe-1.jpg">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="top-recipe-text">
+                            <div class="cat-name">Desert</div>
+                            <a href="#">
+                                <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit, sed do eiusmod tempor incididunt ut labore.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="top-recipe-item">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="top-recipe-img set-bg" data-setbg="img/top-recipe/recipe-2.jpg">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="top-recipe-text">
+                                    <div class="cat-name">Vegan</div>
+                                    <a href="#">
+                                        <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+                                    </a>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-recipe-item">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="top-recipe-img set-bg" data-setbg="img/top-recipe/recipe-3.jpg">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="top-recipe-text">
+                                    <div class="cat-name">Meat lover</div>
+                                    <a href="#">
+                                        <h4>Veggie soup with Mushrooms</h4>
+                                    </a>
+                                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                        magna aliqua. Lorem ipsum dolor sit amet, consectetur.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-recipe-item">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="top-recipe-img set-bg" data-setbg="img/top-recipe/recipe-4.jpg">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="top-recipe-text">
+                                    <div class="cat-name">Desert</div>
+                                    <a href="#">
+                                        <h4>Caramel Ice Cream with Berries</h4>
+                                    </a>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-recipe-item">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="top-recipe-img set-bg" data-setbg="img/top-recipe/recipe-5.jpg">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="top-recipe-text">
+                                    <div class="cat-name">Desert</div>
+                                    <a href="#">
+                                        <h4>Freash Octopuse with lime juice</h4>
+                                    </a>
+                                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                        magna aliqua. Lorem ipsum dolor sit amet, consectetur.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Top Recipe Section End -->
+
+    <!-- Categories Filter Section Begin -->
+    <div class="categories-filter-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="filter-item">
+                        <ul>
+                            <li class="active" data-filter="*">Vegetarian</li>
+                            <li data-filter=".mostpopular">Most popular</li>
+                            <li data-filter=".meatlover">Meat Lover</li>
+                            <li data-filter=".glutenfree">Gluten Free</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="cf-filter" id="category-filter">
+                <div class="cf-item mix all mostpopular">
+                    <div class="cf-item-pic">
+                        <img src="img/cate-filter/cate-filter-1.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all mostpopular">
+                    <div class="cf-item-pic">
+                        <img src="img/cate-filter/cate-filter-2.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all meatlover mostpopular">
+                    <div class="cf-item-pic">
+                        <img src="img/cate-filter/cate-filter-3.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all meatlover">
+                    <div class="cf-item-pic glutenfree">
+                        <img src="img/cate-filter/cate-filter-4.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all meatlover glutenfree">
+                    <div class="cf-item-pic">
+                        <img src="img/cate-filter/cate-filter-5.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Categories Filter Section End -->
+
+    <!-- Feature Recipe Section Begin -->
+    <section class="feature-recipe">
+        <div class="section-title">
+            <h5>Featured Recipes</h5>
+        </div>
+        <div class="container po-relative">
+            <div class="plus-icon">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="fr-item">
+                        <div class="fr-item-img">
+                            <img src="img/feature-1.jpg" alt="">
+                        </div>
+                        <div class="fr-item-text">
+                            <h4>Sunday Brunch: Spaghetti and Eggs Recipe</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="fr-item">
+                        <div class="fr-item-img">
+                            <img src="img/feature-2.jpg" alt="">
+                        </div>
+                        <div class="fr-item-text">
+                            <h4>Sunday Brunch: Spaghetti and Eggs Recipe</h4>
+                            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Recipe Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="fs-left">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="img/footer-logo.png" alt="">
+                            </a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+                            viverra maecenas accumsan lacus vel facilisis.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+                    <form action="#" class="subscribe-form">
+                        <h3>Subscribe to our newsletter</h3>
+                        <input type="email" placeholder="Your e-mail">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
+                        <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
+                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+                        <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search model -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="Search here.....">
+			</form>
+		</div>
+	</div>
+	<!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="{{ asset('template_default/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('template_default/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('template_default/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('template_default/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('template_default/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('template_default/js/main.js') }}"></script>
 </body>
 
 </html>
