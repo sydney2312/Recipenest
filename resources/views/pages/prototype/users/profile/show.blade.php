@@ -1,303 +1,203 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Yoga Studio Template">
-    <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yummy | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
-
-   
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="{{asset('template_default/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/nice-select.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/style.css')}}" type="text/css">
+    <title>Chef Profile | RecipeNest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Header Section Begin -->
-    <header class="header-section-other">
-        <div class="container-fluid">
-            <div class="logo">
-                <a href="./index.html"><img src="img/little-logo.png" alt=""></a>
-            </div>
-            <div class="nav-menu">
-                <nav class="main-menu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="about-me.html">About Me</a></li>
-                                <li><a href="categories.html">Categories</a></li>
-                                <li><a href="recipe.html">Recipe</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="recipe.html">Recipes</a></li>
-                        <li><a href="categories.html">Best Of</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="nav-right search-switch">
-                    <i class="fa fa-search"></i>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
-    </header>
-    <!-- Header End -->
-
-
-
-    <!-- Hero Search Section Begin -->
-<!-- Chef Profile Section Begin (replace Hero section) -->
-<!-- Chef Profile Section Begin -->
-<section class="about-me spad">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm mb-4">
     <div class="container">
-        <div class="row align-items-center">
-            <!-- Left Column (Chef Information) -->
-            <div class="col-lg-6 col-md-12">
-                <div class="about-left">
-                    <!-- Chef Image -->
-                    <img src="{{ asset('template_default/img/chef-18.jpg') }}" alt="Chef Image" class="img-fluid chef-img">
-                </div>
-            </div>
+        <a class="navbar-brand" href="{{ route('home') }}">RecipeNest</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Right Column (Chef Information and Social Links) -->
-            <div class="col-lg-6 col-md-12">
-                <div class="about-right">
-                    <div class="about-title">
-                        <!-- Chef's Name and Title -->
-                        <h2>I'm Luca Moretti, <br />Executive Chef & Culinary Expert</h2>
-                        <p> Cooking has always been more than just a profession for me it's a lifelong passion. With over a decade of experience in fine dining and international cuisine, I take pride in crafting dishes that not only delight the palate but also tell a story. My journey in the culinary world began in the heart of Italy, where I learned the art of balancing flavors and textures from the best mentors </p>
-
-                        <p> As an Executive Chef, I specialize in modernizing classic recipes while maintaining their authenticity. My focus is on using fresh, high-quality ingredients to create memorable dining experiences. Whether it's experimenting with bold new flavors or perfecting timeless techniques, I believe that every dish should be an expression of creativity and craftsmanship.
-
-Through my food blog, I hope to share my love for cooking, offer expert tips, and inspire others to explore the beauty of gastronomy. Whether you're a home cook or a fellow professional, I invite you to join me on this flavorful journey !
-
-</p>
-                    </div>
-
-                    <!-- Social Icons Section -->
-                    <div class="social-icons">
-                        <h4>Connect with me</h4>
-                        <ul class="social-list">
-                            <li><a href="#" class="social-icon"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="social-icon"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="social-icon"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#" class="social-icon"><i class="fa fa-linkedin"></i></a></li>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('recipes.index') }}">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('chefs.index') }}">Chefs</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                @if(Auth::check())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle user-info" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                         </ul>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login as Peter Parker</a>
+                    </li>
+                @endif
+            </ul>
         </div>
     </div>
-</section>
-<!-- Chef Profile Section End -->
+</nav>
 
-<!-- Chef Profile Section End -->
+<!-- Chef Profile Page Content -->
+<div class="container mb-3">
+    <a href="{{ route('chefs.index') }}" class="btn btn-light text-muted small px-3">← Back to Chef List</a>
+</div>
 
+<div class="container text-center mb-4">
+    <h1 class="chef-profile-heading">Chef Profile</h1>
+</div>
 
-<style>
-/* About Me Section Styles */
-/* About Me Section Styles */
-.about-me {
-    padding: 60px 0;
-    background-color: #f8f8f8;
-}
-
-.about-left {
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.chef-img {
-    width: 100%;
-    max-width: 400px; /* Set max width for the image */
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.about-title h2 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.about-title p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.social-icons {
-    text-align: left; /* Aligns the social media section with the text */
-    margin-top: 20px; /* Reduced space for closer alignment */
-}
-
-.social-icons h4 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px; /* Adjusted for better spacing */
-    font-weight: bold;
-}
-
-/* Social Media Icons (Left Aligned and Black) */
-.social-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-.social-list li {
-    display: inline-block;
-    margin-right: 15px;
-    margin-bottom: 10px; /* Add space between icons */
-}
-
-.social-icon {
-    font-size: 30px;
-    color: #000; /* Black color */
-    transition: color 0.3s ease;
-}
-
-.social-icon:hover {
-    color: #ff5722; /* Accent color on hover */
-}
-
-/* Media Queries for Res
-
-
-</style>
-<!-- Chef Profile Section End -->
-
-
-<!-- About Me Section Begin -->
-<!-- Specialties Section Begin -->
-<div class="specialties-section" style="padding: 80px 0; background-color: #f8f9fa; text-align: center;">
-    <div class="container">
-        <h2 style="font-size: 36px; font-weight: bold; color: #333; margin-bottom: 40px;">Chef's Specialties</h2>
-        
-        <div class="row">
-            <!-- Specialty Card 1 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="specialty-card" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
-                    <img src="{{ asset('template_default/img/recipe-2.jpg') }}" alt="Specialty 1" style="width: 100%; height: auto; border-bottom: 2px solid #ddd;">
-                    <div class="specialty-info" style="padding: 20px;">
-                        <h3 style="font-size: 24px; font-weight: 500; color: #333;">Sushi & Sashimi</h3>
-                        <p style="color: #555; font-size: 16px;">A Japanese delicacy with fresh, hand-prepared ingredients, served with a modern twist.</p>
-                    </div>
-                </div>
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center mb-3 mb-md-0">
+            <div class="chef-img-wrapper-profile">
+                <img src="{{ $chef->getImage() }}" alt="Chef Image" class="chef-img-profile">
             </div>
-            
-            <!-- Specialty Card 2 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="specialty-card" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
-                    <img src="{{ asset('template_default/img/recipe-2.jpg') }}" alt="Specialty 2" style="width: 100%; height: auto; border-bottom: 2px solid #ddd;">
-                    <div class="specialty-info" style="padding: 20px;">
-                        <h3 style="font-size: 24px; font-weight: 500; color: #333;">Italian Cuisine</h3>
-                        <p style="color: #555; font-size: 16px;">Handcrafted pasta, rich sauces, and traditional Italian flavors, made to perfection.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Specialty Card 3 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="specialty-card" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
-                    <img src="{{ asset('template_default/img/recipe-2.jpg') }}" alt="Specialty 3" style="width: 100%; height: auto; border-bottom: 2px solid #ddd;">
-                    <div class="specialty-info" style="padding: 20px;">
-                        <h3 style="font-size: 24px; font-weight: 500; color: #333;">Pastry & Baked Goods</h3>
-                        <p style="color: #555; font-size: 16px;">Deliciously rich pastries and fresh-baked goods, the perfect balance of sweet and savory.</p>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="col-md-8">
+            <p class="chef-description">
+                <strong class="chef-name">{{ $chef->name }}</strong> is known for bringing a creative flair to the kitchen, combining classic techniques with modern flavors. This chef has a passion for culinary excellence and enjoys crafting dishes that are both comforting and exciting.
+            </p>
         </div>
     </div>
 </div>
-<!-- Specialties Section End -->
 
-
-
-    <!-- Similar Recipe Section End -->
-
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="fs-left">
-                        <div class="logo">
-                            <a href="./index.html">
-                                <img src="img/footer-logo.png" alt="">
-                            </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                            viverra maecenas accumsan lacus vel facilisis.</p>
+<div class="container">
+    <h2 class="section-title text-center mb-4">Featured Recipes</h2>
+    <div class="row justify-content-center">
+        @forelse ($chef->recipes as $recipe)
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="recipe-card">
+                    <div class="recipe-img-wrapper">
+                        <img src="{{ asset('storage/' . $recipe->image) }}" alt="{{ $recipe->title }}" class="recipe-img">
                     </div>
-                </div>
-                <div class="col-lg-6 offset-lg-1">
-                    <form action="#" class="subscribe-form">
-                        <h3>Subscribe to our newsletter</h3>
-                        <input type="email" placeholder="Your e-mail">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                    <div class="social-links">
-                        <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
-                        <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
-                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
-                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
-                        <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
+                    <div class="recipe-info p-3 text-center">
+                        <h4 class="recipe-title">{{ $recipe->title }}</h4>
+                        <a href="{{ route('recipes.show', $recipe->id) }}" class="btn btn-outline-dark mt-2">View Recipe</a>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright-text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+        @empty
+            <p class="text-muted text-center">No recipes available for this chef yet.</p>
+        @endforelse
+    </div>
+</div>
 
-    <!-- Search model -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
+<style>
+    .chef-profile-heading {
+        font-size: 42px;
+        font-weight: 800;
+        font-family: 'Georgia', serif;
+        color: #333;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
 
-     <!-- Js Plugins -->
-     <script src="{{ asset('template_default/js/jquery-3.3.1.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/bootstrap.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/jquery.slicknav.js') }}" ></script>
-    <script src="{{ asset('template_default/js/jquery.nice-select.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/mixitup.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/main.js') }}" ></script>
+    .chef-img-wrapper-profile {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid #f0f0f0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin: auto;
+    }
+
+    .chef-img-profile {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .chef-description {
+        font-size: 18px;
+        color: #444;
+        line-height: 1.6;
+    }
+
+    .chef-name {
+        font-weight: 800;
+        font-size: 20px;
+        color: #111;
+        margin-right: 5px;
+    }
+
+    .section-title {
+        font-size: 30px;
+        font-weight: 600;
+        color: #222;
+        margin-top: 20px;
+    }
+
+    .recipe-card {
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        background-color: #fff;
+        transition: transform 0.2s ease;
+    }
+
+    .recipe-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .recipe-img-wrapper {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .recipe-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .recipe-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .btn-outline-dark {
+        border-color: #333;
+        color: #333;
+        transition: 0.3s;
+    }
+
+    .btn-outline-dark:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .btn-light {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+    }
+
+    .btn-light:hover {
+        background-color: #eee;
+        color: #111;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

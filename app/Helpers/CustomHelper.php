@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use App\Helpers\CustomHelper;
 
 class CustomHelper
 {

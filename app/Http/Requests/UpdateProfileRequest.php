@@ -24,8 +24,16 @@ class UpdateProfileRequest extends FormRequest
     {
         // Source: https://laravel.com/docs/11.x/validation#creating-form-requests
         return [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
+            'name' => 'required|string|min:2|max:100',
+            'profile' => 'sometimes|image|mimes:png,jpg,jpeg,gif,webp|max:20480',
+            'short_description' => 'required|string|min:2|max:200',
+            'full_description' => 'required|string|min:2',
+            'address' => 'sometimes|string|min:2|max:200',
+            'phone' => 'sometimes|string|max:15',
+            'birthday' => 'required|date|before_or_equal:'.Carbon::today()->toDateString(),
+            'social_facebook' => 'sometimes|string|max:200',
+            'social_x' => 'sometimes|string|max:200',
+            'social_instagram' => 'sometimes|string|max:200',
         ];
     }
 }

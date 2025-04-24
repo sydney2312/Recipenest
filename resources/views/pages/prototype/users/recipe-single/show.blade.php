@@ -1,204 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe - Tomato Soup with Crispy Cheese Balls</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 85%;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            color: #FF6F61;
-            font-family: 'Georgia', serif;
-            margin-bottom: 15px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .recipe-image {
-            display: block;
-            margin: 0 auto;
-            width: 40%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .details {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-        }
-
-        .details div {
-            width: 48%;
-        }
-
-        h2 {
-            font-size: 2rem;
-            color: #FF6F61;
-            margin-bottom: 15px;
-            font-family: 'Georgia', serif;
-            text-transform: uppercase;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 20px;
-        }
-
-        ul li {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 12px;
-            position: relative;
-        }
-
-        ul li::before {
-            content: "✔";
-            position: absolute;
-            left: 0;
-            color: #FF6F61;
-        }
-
-        .instructions p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .time {
-            background-color: #FF6F61;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 1rem;
-            color: #777;
-            padding: 20px;
-            border-top: 1px solid #ddd;
-        }
-
-        footer p {
-            font-family: 'Georgia', serif;
-        }
-
-        .cta-button {
-            background-color: #FF6F61;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: #E55D50;
-        }
-
-    </style>
+    <title>Recipe Details</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Tomato Soup with Crispy Cheese Balls</h1>
-            <p>A comforting soup with a twist! This velvety tomato soup is paired with crispy mozzarella cheese balls for a delightful crunch in every bite.</p>
-        </header>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('home') }}">RecipeNest</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <img class="recipe-image" src="{{ asset('template_default/img/tomatosoup.jpg') }}" alt="Tomato Soup">
-
-        <div class="details">
-            <div>
-                <h2>Prep Time</h2>
-                <p>15 minutes</p>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Home, Recipes, and Chefs links -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('recipes.index') }}">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('chefs.index') }}">Chefs</a>
+                    </li>
+                </ul>
+                <!-- Login as Peter Parker or User Info Section -->
+                <ul class="navbar-nav">
+                    @if(Auth::check())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle user-info" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            </ul>
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login as Peter Parker</a>
+                        </li>
+                    @endif
+                </ul>
             </div>
-            <div>
-                <h2>Cook Time</h2>
-                <p>30 minutes</p>
-            </div>
+        </div>
+    </nav>
+
+    <!-- RECIPE DETAILS SECTION -->
+    <div class="recipe-single" style="max-width: 900px; margin: 40px auto; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); font-family: 'Segoe UI', sans-serif; color: #1d1d1f;">
+        <div class="section-title" style="text-align: center; font-size: 28px; font-weight: 600; margin-bottom: 30px; color: #333; letter-spacing: 1px;">
+            Recipe Details
+        </div>
+        
+        <!-- Recipe Image -->
+        <img src="{{ asset('storage/images/media/' . basename($recipe->image)) }}" alt="{{ $recipe->title }}" style="width: 100%; height: auto; border-radius: 16px; margin-bottom: 20px; object-fit: cover; max-height: 450px;">
+        
+        <!-- Recipe Meta Information -->
+        <div class="recipe-meta" style="font-size: 15px; color: #555; margin-bottom: 30px; text-align: left; line-height: 1.6;">
+            <strong>Recipe by:</strong> {{ $recipe->user->name }}<br>
+            <strong>Cook Time:</strong> {{ $recipe->total_time }} {{ $recipe->total_time_unit }}<br>
+            <strong>Published:</strong> {{ \Carbon\Carbon::parse($recipe->publish_date)->format('F j, Y') }}
         </div>
 
-        <div class="time">
-            <p>Total Time: 45 minutes</p>
+        <!-- Recipe Title -->
+        <div class="recipe-title" style="text-align: center; font-size: 34px; font-weight: bold; color: #111; margin-bottom: 20px;">
+            {{ $recipe->title }}
         </div>
 
-        <div class="ingredients">
-            <h2>Ingredients</h2>
-            <ul>
-                <li>4 large ripe tomatoes</li>
-                <li>1 cup vegetable broth</li>
-                <li>1/2 cup heavy cream</li>
-                <li>1 medium onion, chopped</li>
-                <li>2 cloves garlic, minced</li>
-                <li>Salt and pepper, to taste</li>
-                <li>2 cups shredded mozzarella cheese</li>
-                <li>1 cup breadcrumbs</li>
-                <li>1 egg, beaten</li>
-            </ul>
-        </div>
+        <!-- Recipe Short Description -->
+        <p class="description" style="font-size: 17px; color: #444; margin-bottom: 30px; line-height: 1.6;">
+            {{ $recipe->short_description }}
+        </p>
 
-        <div class="instructions">
-            <h2>Instructions</h2>
-            <p>1. In a large pot, heat some olive oil and sauté onions and garlic until soft and fragrant.</p>
-            <p>2. Add the chopped tomatoes and vegetable broth, bring to a boil, and simmer for 15 minutes.</p>
-            <p>3. Using an immersion blender (or a regular blender), blend the soup until smooth.</p>
-            <p>4. Stir in the heavy cream, salt, and pepper to taste. Let the soup simmer for 5 more minutes.</p>
-            <p>5. In a bowl, combine shredded mozzarella, breadcrumbs, and the beaten egg. Form the mixture into small balls.</p>
-            <p>6. Fry the cheese balls in hot oil until golden brown and crispy. Set them aside on a paper towel to drain excess oil.</p>
-            <p>7. Serve the soup hot, topped with crispy cheese balls for an irresistible finish.</p>
-        </div>
+        <!-- Ingredients Section -->
+        <h3 style="font-size: 22px; margin-top: 30px; margin-bottom: 15px; color: #0071e3;">Ingredients</h3>
+        <ul style="padding-left: 20px;">
+            @foreach(explode("\n", $recipe->ingredients) as $ingredient)
+                <li style="margin-bottom: 10px; font-size: 16px; color: #333;">{{ $ingredient }}</li>
+            @endforeach
+        </ul>
 
-        <a href="contact.html" class="cta-button">Try this recipe & share your results!</a>
+        <!-- Instructions Section -->
+        <h3 style="font-size: 22px; margin-top: 30px; margin-bottom: 15px; color: #0071e3;">Instructions</h3>
+        <ul style="padding-left: 20px;">
+            @foreach(explode("\n", $recipe->instructions) as $step)
+                <li style="margin-bottom: 10px; font-size: 16px; color: #333;">{{ $step }}</li>
+            @endforeach
+        </ul>
+
+        <!-- Back to Recipes Button -->
+        <a href="{{ route('recipes.index') }}" class="back-btn" style="display: inline-block; margin-top: 40px; padding: 12px 25px; background: #0071e3; color: white; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.3s ease;">
+            Back to Recipes
+        </a>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Your Food Blog | All rights reserved | Follow us on <a href="https://instagram.com/yourfoodblog" target="_blank">Instagram</a></p>
-    </footer>
+    <!-- Add Bootstrap JS link here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

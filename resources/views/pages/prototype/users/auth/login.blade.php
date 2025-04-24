@@ -10,23 +10,24 @@
 <body>
     <div class="login-container">
         <div class="logo">
-             <img src="{{ asset('template_default/img/Recipienestlogo.png') }}" alt="Food App Logo">
+            <img src="{{ asset('template_default/img/Recipienestlogo.png') }}" alt="Food App Logo">
         </div>
-        <h2 style="margin-top: -10px;">Welcome Back!</h2> <!-- Moved slightly higher -->
+        <h2 style="margin-top: -10px;">Welcome Back!</h2>
         <p class="subtitle">Login to continue exploring delicious recipes.</p>
-        <form id="loginForm">
+        <form id="loginForm" action="{{ route('login') }}" method="POST">
+            @csrf
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
             
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
             
             <button type="submit">Login</button>
-            <p id="error-message" class="error"></p>
+            <p id="error-message" class="error">{{ session('error') }}</p>
             <p id="success-message" class="success" style="display: none;">You have logged in successfully!</p>
             <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
         </form>
@@ -52,6 +53,7 @@
 </html>
 
 <style>
+/* Add your CSS styles here */
 body {
     font-family: 'Poppins', sans-serif;
     display: flex;

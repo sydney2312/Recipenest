@@ -1,166 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="login-container">
-        <div class="logo">
-             <img src="{{ asset('template_default/img/Recipienestlogo.png') }}" alt="Food App Logo">
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">
+                                {{ __('Email Address') }}
+                            </label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">
+                                {{ __('Password') }}
+                            </label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror"
+                                    name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                           name="remember" id="remember"
+                                           @if(old('remember')) checked @endif>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <h2 style="margin-top: -10px;">Welcome Back!</h2> <!-- Moved slightly higher -->
-        <p class="subtitle">Login to continue exploring delicious recipes.</p>
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email">
-            </div>
-            
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password">
-            </div>
-            
-            <button type="submit">Login</button>
-            <p id="error-message" class="error"></p>
-            <p id="success-message" class="success" style="display: none;">You have logged in successfully!</p>
-            <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
-        </form>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const button = document.querySelector('button');
-            button.innerHTML = 'Logging in...';
-            button.style.opacity = '0.7';
-            setTimeout(() => {
-                document.getElementById('success-message').style.display = 'block';
-                button.innerHTML = 'Login';
-                button.style.opacity = '1';
-            }, 1500);
-            setTimeout(() => {
-                document.getElementById('success-message').style.display = 'none';
-            }, 4000);
-        });
-    </script>
-</body>
-</html>
-
-<style>
-body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('background.jpg') no-repeat center center/cover;
-    margin: 0;
-}
-
-.login-container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 15px;
-    width: 380px;
-    text-align: center;
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.logo img {
-    width: 140px;
-    margin-bottom: 20px;
-}
-
-h2 {
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: all 0.3s ease-in-out;
-}
-
-input:focus {
-    border-color: #ff6600;
-    box-shadow: 0px 0px 8px rgba(255, 102, 0, 0.5);
-    outline: none;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #ff6600;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s;
-}
-
-button:hover {
-    background: #e65c00;
-    transform: scale(1.05);
-}
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-.success {
-    color: green;
-    font-size: 14px;
-    margin-top: 10px;
-    opacity: 0;
-    animation: fadeInSuccess 0.5s forwards;
-}
-
-@keyframes fadeInSuccess {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.signup-link {
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.signup-link a {
-    color: #ff6600;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-</style>
+</div>
+@endsection

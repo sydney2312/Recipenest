@@ -1,42 +1,42 @@
 <?php
 
-namespace Database\Seeders;
+namespace App\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class UserSeeder extends Seeder
+class Chef extends Authenticatable
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'bio',
+        'profile_image',
+        'instagram',
+        'twitter',
+        'facebook',
+        'speciality',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    public function recipes()
     {
-        DB::table('users')->insert([
-            [
-                'name' => 'John Doe',
-                'email' => 'johndoe@mail.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('Password1'),
-                'created_at' => Carbon::now(),
-                'updated_at' => null,
-                'role' => 'chef',
-                'profile' => 'images/profiles/default.jpg',
-                // 'full_description' => 'Description not available',
-            ],
-            [
-                'name' => 'Jane Doe',
-                'email' => 'janedoe@mail.com',
-                'password' => Hash::make('Password1'),
-                'email_verified_at' => Carbon::now(),
-                'created_at' => Carbon::now(),
-                'updated_at' => null,
-                'role' => 'user',
-                'profile' => 'images/profiles/default.jpg',
-                // 'full_description' => 'Description not available',
-            ],
-        ]);
+        return $this->hasMany(Recipe::class);
+    }
+
+    public function getProfileImageUrlAttribute()
+    {
+        if ($this->profile_image) {
+            return asset('storage/profile_images/' . $this->profile_image);
+        }
+        return asset('images/default-profile.jpg');
     }
 }

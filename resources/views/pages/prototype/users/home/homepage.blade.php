@@ -1,5 +1,7 @@
 <x-mylayouts.layout-prototype>
-
-    <h1>Home Page</h1>
-
+    <!-- Your homepage content goes here -->
+    <div class="container">
+        <h1>Welcome to RecipeNest</h1>
+        <!-- Add your navbar, modals, etc. here -->
+    </div>
 </x-mylayouts.layout-prototype>

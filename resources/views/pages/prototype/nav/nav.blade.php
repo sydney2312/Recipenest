@@ -1,4 +1,5 @@
 <!-- Button to Open the Modal -->
+<!-- Button to Open the Modal -->
 <div class="container my-5">
     <div class="text-center">
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">
@@ -61,4 +62,32 @@
 
         </div>
     </div>
+</div>
+
+
+<style>
+    .prototype-nav a {
+        display: inline-block;
+        padding: 5px 8px;
+        margin: 4px 10px;
+        border: 1px solid grey;
+    }
+</style>
+
+<div class="container prototype-nav">
+    <a href="{{ route('prototype.login') }}">Login</a>
+    <a href="{{ route('prototype.register') }}">Register</a>
+    <a href="{{ route('prototype.home') }}">Home</a>
+    <a href="{{ route('prototype.chefs.index') }}">Chefs</a>
+    <a href="{{ route('prototype.chefs.show') }}">Chef Profile</a>
+    <a href="{{ route('prototype.chefs.portfolio') }}">Chef Portfolio</a>
+    <a href="{{ route('prototype.recipes.index') }}">Recipe List</a>
+    <a href="{{ route('prototype.recipes.show') }}">Recipe Details</a>
+    <a href="{{ route('prototype.authors.home') }}">Dashboard / Home</a>
+    <a href="{{ route('prototype.authors.recipes.index') }}">Dashboard /
+        Recipes</a>
+    <a href="{{ route('prototype.authors.recipes.create') }}">Dashboard / Create
+        Recipe</a>
+    <a href="{{ route('prototype.authors.profile.edit') }}">Dashboard / Update
+        Profile</a>
 </div>

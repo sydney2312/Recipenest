@@ -1,352 +1,165 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Yoga Studio Template">
-    <meta name="keywords" content="Yoga, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yummy | Template</title>
+    <title>Meet Our Chefs - RecipeNest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fdfdfd;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
+        /* NAV BAR STYLING */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="{{asset('template_default/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/nice-select.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('template_default/css/style.css')}}" type="text/css">
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .navbar-nav .nav-link {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff;
+        }
+
+        /* HEADER SECTION */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 30px;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* CHEF CARDS */
+        .chef-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 35px 20px;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chef-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.07);
+        }
+
+        .chef-img-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+            transition: transform 0.4s ease;
+        }
+
+        .chef-card:hover .chef-img-wrapper {
+            transform: scale(1.05);
+        }
+
+        .chef-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chef-name {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .chef-title,
+        .chef-specialty {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .chef-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            font-size: 0.9em;
+            background-color: #2c3e50;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .chef-btn:hover {
+            background-color: #1a252f;
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Header Section Begin -->
-
-<!-- Header Section Begin -->
-<header class="header-section-other" style="padding: 20px 0;">
-    <div class="container-fluid">
-        <!-- Navigation Menu -->
-        <div class="nav-menu" style="display: flex; justify-content: space-between; align-items: center;">
-            <nav class="main-menu mobile-menu" style="flex-grow: 1;">
-                <ul style="list-style: none; display: flex; margin: 0; padding: 0;">
-                    <li class="active" style="margin-left: 30px;">
-                        <a href="#" style="color: #333; font-size: 18px; font-weight: 500; text-transform: uppercase; transition: color 0.3s;">Home</a>
-                    </li>
-                    <li style="margin-left: 30px;">
-                        <a href="#" style="color: #333; font-size: 18px; font-weight: 500; text-transform: uppercase; transition: color 0.3s;">Pages</a>
-                        <ul class="sub-menu" style="list-style: none; padding-left: 20px; display: none;">
-                            <li><a href="about-me.html" style="color: #333; padding: 10px 0;">About Me</a></li>
-                            <li><a href="categories.html" style="color: #333; padding: 10px 0;">Categories</a></li>
-                            <li><a href="recipe.html" style="color: #333; padding: 10px 0;">Recipe</a></li>
-                            <li><a href="blog.html" style="color: #333; padding: 10px 0;">Blog</a></li>
-                            <li><a href="contact.html" style="color: #333; padding: 10px 0;">Contact</a></li>
-                        </ul>
-                    </li>
-                    <li style="margin-left: 30px;">
-                        <a href="recipe.html" style="color: #333; font-size: 18px; font-weight: 500; text-transform: uppercase; transition: color 0.3s;">Recipes</a>
-                    </li>
-                    <li style="margin-left: 30px;">
-                        <a href="categories.html" style="color: #333; font-size: 18px; font-weight: 500; text-transform: uppercase; transition: color 0.3s;">Best Of</a>
-                    </li>
-                    <li style="margin-left: 30px;">
-                        <a href="contact.html" style="color: #333; font-size: 18px; font-weight: 500; text-transform: uppercase; transition: color 0.3s;">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-
-            <!-- Search Icon -->
-            <div class="nav-right search-switch" style="font-size: 20px; color: #333; transition: color 0.3s ease; margin-left: 30px;">
-                <i class="fa fa-search"></i>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Header Section End -->
-
-<style>
-    /* Minimalist Style */
-    header {
-        background-color: transparent; /* No background color */
-        box-shadow: none; /* Remove shadow for a clean look */
-    }
-
-    .nav-menu a {
-        font-family: 'Roboto', sans-serif; /* Clean font */
-        font-weight: 500;
-        color: #333; /* Dark gray color for text */
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 15px 0;
-        transition: color 0.3s ease, transform 0.3s ease;
-        text-decoration: none; /* No underlines */
-    }
-
-    .nav-menu a:hover {
-        color: #ff5722; /* Subtle hover effect */
-        transform: translateY(-2px); /* Slight lift effect */
-    }
-
-    .sub-menu a {
-        color: #333;
-        padding: 12px 0;
-        display: block;
-        transition: color 0.3s ease;
-    }
-
-    .sub-menu a:hover {
-        color: #ff5722; /* Accent color for sub-menu hover */
-    }
-
-    .nav-right {
-        font-size: 20px;
-        color: #333;
-        transition: color 0.3s ease;
-    }
-
-    .nav-right:hover {
-        color: #ff5722; /* Accent color for search icon */
-    }
-
-    .main-menu {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        width: 100%;
-    }
-
-    .sub-menu {
-        display: none;
-        padding-left: 0;
-    }
-
-    .nav-menu li:hover .sub-menu {
-        display: block;
-    }
-</style>
-
-
-
-    <!-- Header End -->
-
-    <!-- Hero Search Section Begin -->
-<div class="row">
-    <div class="col-12">
-        <div class="chef-list-header" style="background-color: #f8f9fa; padding: 50px 0; text-align: center;">
-            <h1 style="font-size: 48px; font-weight: bold; color: #333333;">Meet Our Talented Chefs</h1>
-            <p style="font-size: 20px; color: #555555; margin-top: 10px;">Explore the best culinary experts in the industry.</p>
-        </div>
-    </div>
-</div>
-
-    <!-- Hero Search Section End -->
-
-    <!-- About Me Section Begin -->
-    
-                        <!-- TRYING SMTJHn -->
-                        <div class="container"> 
-    <div class="row">
-        <!-- Chef Card 1 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="chef-card">
-                <img src="{{ asset('template_default/img/chef-18.jpg') }}" alt="Chef Image" class="chef-img">
-                <div class="chef-info text-center">
-                    <h3>Luca Moretti</h3>
-                    <p class="chef-title">Executive Chef</p>
-                    <p class="chef-specialty" style="background-color:rgb(250, 128, 114); color:rgb(51, 51, 51);">Italian Cuisine</p>
-                    <a href="#" class="chef-btn">View Profile</a>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Chef Card 2 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="chef-card">
-                <img src="{{ asset('template_default/img/chef-12.jpg') }}" alt="Chef Image" class="chef-img">
-                <div class="chef-info text-center">
-                    <h3>John Smith </h3>
-                    <p class="chef-title">Master Chef</p>
-                    <p class="chef-specialty" style="background-color: #D35400; color: #ffffff;">Baked Goods</p>
-                    <a href="#" class="chef-btn">View Profile</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chef Card 3 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="chef-card">
-                <img src="{{ asset('template_default/img/chef-22.jpg') }}" alt="Chef Image" class="chef-img">
-                <div class="chef-info text-center">
-                    <h3>Emily Davis</h3>
-                    <p class="chef-title">Pastry Chef</p>
-                    <p class="chef-specialty" style="background-color: #F5DEB3; color: #2d2d2d;">Sushi and Sashimi</p>
-                    <a href="#" class="chef-btn">View Profile</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- Chef Card 4 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="chef-card">
-                <img src="{{ asset('template_default/img/chef-17.jpg') }}" alt="Chef Image" class="chef-img">
-                <div class="chef-info text-center">
-                    <h3>Sophia Laurent</h3>
-                    <p class="chef-title">Seafood Expert</p>
-                    <p class="chef-specialty" style="background-color: #009688; color: #ffffff;">Seafood Dishes</p>
-                    <a href="#" class="chef-btn">View Profile</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chef Card 5 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="chef-card">
-                <img src="{{ asset('template_default/img/chef-19.jpg') }}" alt="Chef Image" class="chef-img">
-                <div class="chef-info text-center">
-                    <h3>Anna Smith</h3>
-                    <p class="chef-title">Fusion Chef</p>
-                    <p class="chef-specialty" style="background-color: #ff5722; color: #ffffff;">Fusion Cuisine</p>
-                    <a href="#" class="chef-btn">View Profile</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chef Card 6 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="chef-card">
-                <img src="{{ asset('template_default/img/chef-20.jpg') }}" alt="Chef Image" class="chef-img">
-                <div class="chef-info text-center">
-                    <h3>Isabella Moreau</h3>
-                    <p class="chef-title">Grill Master</p>
-                    <p class="chef-specialty" style="background-color: #795548; color: #ffffff;">BBQ & Grilling</p>
-                    <a href="#" class="chef-btn">View Profile</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pagination -->
-    <div class="pagination text-center">
-        <a href="#">&laquo;</a>
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">&raquo;</a>
-    </div>
-
-    <!-- Testimonial Section -->
-    <div class="testimonial-section text-center" style="background-color: #f8f9fa; padding: 50px 0; margin-top: 40px;">
-        <h2>What Our Clients Say</h2>
-        <div class="testimonial-carousel" style="max-width: 800px; margin: 0 auto;">
-            <div class="testimonial-card" style="background: white; padding: 20px; margin: 10px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
-                <p>"Amazing chefs with great specialties! Highly recommend."</p>
-                <h5>- Alex Johnson</h5>
-            </div>
-            <div class="testimonial-card" style="background: white; padding: 20px; margin: 10px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
-                <p>"The fusion dishes by Anna Smith were incredible!"</p>
-                <h5>- Sarah Williams</h5>
-            </div>
-            <div class="testimonial-card" style="background: white; padding: 20px; margin: 10px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
-                <p>"Lucas Reed’s vegan cuisine changed my perspective on plant-based food!"</p>
-                <h5>- Michael Brown</h5>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-.chef-card {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.chef-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-</style>
-
-
-
-
-<!-- Chef Listing Section End -->
-
-
-<
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="fs-left">
-                        <div class="logo">
-                            <a href="./index.html">
-                                <img src="img/footer-logo.png" alt="">
-                            </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                            viverra maecenas accumsan lacus vel facilisis.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 offset-lg-1">
-                    <form action="#" class="subscribe-form">
-                        <h3>Subscribe to our newsletter</h3>
-                        <input type="email" placeholder="Your e-mail">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                    <div class="social-links">
-                        <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
-                        <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
-                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
-                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
-                        <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright-text">
-                        
+            <a class="navbar-brand" href="{{ route('home') }}">RecipeNest</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
- <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-
-                    </div>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('recipes.index') }}">Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('chefs.index') }}">Chefs</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
-    <!-- Footer Section End -->
+    </nav>
 
-    <!-- Search model -->
-    <!-- Footer Section End -->
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h1>Meet Our Chefs</h1>
+        <p>The creative minds behind your favorite dishes</p>
+    </div>
 
-    <!-- Search model -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
+    <!-- CHEF LIST -->
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach ($chef_data as $data)
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <div class="chef-card text-center">
+                        <div class="chef-img-wrapper">
+                            <img src="{{ $data->getImage() }}" alt="Chef Image" class="chef-img">
+                        </div>
+                        <h3 class="chef-name">{{ $data->name }}</h3>
+                        <p class="chef-title">{{ $data->title }}</p>
+                        <p class="chef-specialty">{{ $data->specialty }}</p>
+                        <a href="{{ route('chefs.show', $data->id) }}" class="chef-btn">View Profile</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 
-    <!-- Js Plugins -->
-    <script src="{{ asset('template_default/js/jquery-3.3.1.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/bootstrap.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/jquery.slicknav.js') }}" ></script>
-    <script src="{{ asset('template_default/js/jquery.nice-select.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/mixitup.min.js') }}" ></script>
-    <script src="{{ asset('template_default/js/main.js') }}" ></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

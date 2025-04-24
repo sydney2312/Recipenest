@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Helpers\FlasherHelper;
+use App\Helpers\ImageHelper;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeDashboardController extends Controller
 {
@@ -11,7 +15,9 @@ class RecipeDashboardController extends Controller
      */
     public function index()
     {
-        return true;
+        $recipe_data = Recipe::list()->forUser(Auth::id())->get();
+
+        return view('pages.custom.authors.recipe-list.index', compact('recipe_data'));
     }
 
     /**
@@ -19,15 +25,25 @@ class RecipeDashboardController extends Controller
      */
     public function create()
     {
-        return true;
+        return view('pages.custom.authors.recipe-create.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        return true;
+        $validatedData = $request->validated();
+
+        $validatedData['user_id'] = Auth::id();
+
+        $validatedData['image'] = ImageHelper::imageUpload($validatedData['image'], 'media');
+
+        Recipe::create($validatedData);
+
+        FlasherHelper::alert('success', 'Recipe Created');
+
+        return redirect()->route('authors.recipes.index');
     }
 
     /**
@@ -43,15 +59,28 @@ class RecipeDashboardController extends Controller
      */
     public function edit(string $id)
     {
-        return true;
+        $recipe = Recipe::findOrFail($id);
+
+        return view('pages.custom.authors.recipe-edit.edit', compact('recipe'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePostRequest $request, string $id)
     {
-        return true;
+        $validatedData = $request->validated();
+
+        if (!empty($validatedData['image'])) {
+            $validatedData['image'] = ImageHelper::imageUpload($validatedData['image'], 'media');
+        }
+
+        $recipe = Recipe::findOrFail($id);
+        $recipe->update($validatedData);
+
+        FlasherHelper::alert('success', 'Recipe Updated');
+
+        return redirect()->route('authors.recipes.index');
     }
 
     /**
@@ -61,5 +90,4 @@ class RecipeDashboardController extends Controller
     {
         return true;
     }
-
 }

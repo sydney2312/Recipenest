@@ -2,16 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -53,37 +48,25 @@ class User extends Authenticatable
         ];
     }
 
-
     // =============== RELATIONSHIPS ===============
     /**
-     * Get all of the recipes for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Get all of the recipes for the User.
      */
     public function recipes(): HasMany
     {
         return $this->hasMany(Recipe::class);
     }
 
-
-
-
-
     // =============== SCOPES ===============
-
     public function scopeList(Builder $query)
     {
-        $query->where('id', '>', 0)
-        ->withCount(['recipes as total_recipes'])
-        ->latest()
-        ;
+        return $query; // Fix: return the query builder instead of true
     }
-
 
     // =============== FUNCTIONS ===============
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return void
      */
@@ -92,9 +75,8 @@ class User extends Authenticatable
         return route('chefs.show', ['id' => $this->id]);
     }
 
-
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return void
      */
@@ -102,6 +84,4 @@ class User extends Authenticatable
     {
         return asset('storage/'.$this->profile);
     }
-
-
 }

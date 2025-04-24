@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Storage;
 
 class ImageHelper

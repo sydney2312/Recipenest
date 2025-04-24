@@ -2,22 +2,24 @@
     <div class="d-flex my-4">
         <div class="mr-auto">
             <div class="form-group">
-                {{-- <label for="sel1">Filter:</label> --}}
-                <select class="form-control" id="sel1">
+                <select wire:model="sort" wire:change="filter" class="form-control" id="sel1">
                     <option>Filters</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    <option value="recent">Recent</option>
+                    <option value="oldest">Oldest</option>
                 </select>
             </div>
         </div>
-        <div class="float-md-right float-sm-left">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-success" type="submit">Go</button>
+
+        {{-- <form action=""> --}}
+            <div class="float-md-right float-sm-left">
+                <div class="input-group mb-3">
+                    <input wire:model="search" type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button wire:click="filter" class="btn btn-success" type="submit">Go</button>
+                    </div>
                 </div>
             </div>
-        </div>
+            {{--
+        </form> --}}
     </div>
 </div>
